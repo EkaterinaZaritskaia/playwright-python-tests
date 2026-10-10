@@ -1,4 +1,4 @@
-# qa-automation-portfolio
+# playwright-python-tests
 
 UI test automation practice with Python, pytest and Playwright.
 
