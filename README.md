@@ -1,6 +1,8 @@
 # playwright-python-tests
 
-UI test automation practice with Python, pytest and Playwright.
+UI tests for an interactive API coverage report, written in Python with pytest and Playwright.
+
+Test pages are TraceCov reports © Schemathesis.io s.r.o., used with permission.
 
 ## What is tested
 
