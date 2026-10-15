@@ -26,3 +26,9 @@ pytest -v
 ```
 
 To watch the browser: `pytest -v --headed --slowmo 500`
+
+`tests/ui/test_schema_viewer.py` covers a report page with schema details:
+
+- no Deprecated filter when the report has no deprecated operations
+- `$ref` links open the referenced schema component
+- tooltips on schema cells: hit count (1 time / 2 times), never tested, not applicable
