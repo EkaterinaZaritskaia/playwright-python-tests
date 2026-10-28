@@ -1,6 +1,26 @@
 import re
+
+import pytest
 from playwright.sync_api import Page, expect
 
+
+@pytest.mark.parametrize(
+    ("status", "visible_after"),
+    [
+        ("covered", 10),
+        ("partial", 11),
+        ("uncovered", 7)
+    ],
+)
+
+def test_turning_off_status_filter_hides_its_operations(kitchen_sink: Page, status, visible_after):
+    chip = kitchen_sink.locator(f".filter-chip.{status}")
+
+    chip.click()
+
+    expect(chip).to_have_attribute("aria-pressed", "false")
+    expect(kitchen_sink.locator(".accordion:visible")).to_have_count(visible_after)
+    expect(kitchen_sink.locator(f".accordion[data-covered='{status}']:visible")).to_have_count(0)
 
 def test_report_title(kitchen_sink: Page):
 
@@ -35,13 +55,6 @@ def test_search_is_case_insensitive(kitchen_sink: Page):
     kitchen_sink.locator("#search-input").fill("AUDIT")
 
     expect(kitchen_sink.locator(".accordion:visible")).to_have_count(1)
-
-
-def test_uncovered_filter_hides_uncovered_operations(kitchen_sink: Page):
-    kitchen_sink.locator(".filter-chip.uncovered").click()
-
-    expect(kitchen_sink.locator(".accordion:visible")).to_have_count(7)
-    expect(kitchen_sink.locator(".accordion[data-covered='uncovered']:visible")).to_have_count(0)
 
 
 def test_clicking_status_filters_turns_them_off(kitchen_sink: Page):
