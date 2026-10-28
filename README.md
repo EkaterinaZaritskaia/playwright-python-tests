@@ -29,6 +29,11 @@ Test pages are TraceCov reports © Schemathesis.io s.r.o., used with permission.
 - relative report time with a fixed browser clock: "just now" / "1 minute ago" boundary, "1 day" / "2 days"
 - footer links open in a new tab with `rel="noopener"`
 
+`tests/ui/test_thresholds.py` covers pass/fail threshold verdicts (reports `06a`–`06f`, one parametrized test):
+
+- verdict text: "5 thresholds met", "1 threshold met", "1 of 3 thresholds missed", "2 thresholds missed", "1 threshold missed"
+- verdict style matches the result: `pass` for met thresholds, `fail` for missed ones
+
 ## Run
 
 ```bash
